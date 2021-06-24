@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2019_04_17_084032) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "bookings", force: :cascade do |t|
     t.integer "customer_id"
     t.integer "restaurant_id"

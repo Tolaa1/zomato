@@ -13,7 +13,7 @@ class CustomersController < ApplicationController
           redirect_to new_customer_path
       end
   end
-
+     
   def new
     @customer = Customer.new
   end

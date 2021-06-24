@@ -1,0 +1,36 @@
+version: "2"
+
+volumes:
+  db-data:
+    external: false
+
+services:
+  cache:
+    image: memcached:1.4-alpine
+
+  db:
+    environment:
+      POSTGRES_USER:
+      POSTGRES_PASSWORD:
+    image: postgres:9.5
+    volumes:
+      - db-data:/usr/local/pgsql/data
+
+  jobs:
+    env_file: .env
+    build: .
+    volumes:
+      - .:/usr/src/app
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    depends_on:
+      - db
+
+  app:
+    env_file: .env
+    build: .
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "7000:8080"
+    depends_on:
+      - db
