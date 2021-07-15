@@ -1,24 +1,14 @@
+# set base image
 FROM ruby:2.6.0
-
-RUN apt-get update -yqq \
-  && apt-get install -yqq --no-install-recommends \
-    postgresql-client \
-    nodejs \
-    qt5-default \
-    libqt5webkit5-dev \
-  && apt-get -q clean \
-  && rm -rf /var/lib/apt/lists
-
-WORKDIR /usr/src/app
-COPY Gemfile* ./
+RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
+# set the working directory in the container
+WORKDIR /usr/src/zomato
+#copy the dependencies file to the working directory
+COPY Gemfile Gemfile.lock ./
+# install all the dependencies 
 RUN bundle install
+# copy the depencies file 
 COPY . .
-
-# Add a script to be executed every time the container starts.
-COPY entrypoint.sh /usr/bin/
-RUN chmod +x /usr/bin/entrypoint.sh
-ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 3000
-
-# CMD bundle exec unicorn -c ./config/unicorn.rb
-CMD ["rails", "server", "-b", "0.0.0.0"]
+# Configure the main process to run on container start
+CMD ["rails", "server", "-b", "0.0.0.0"] 

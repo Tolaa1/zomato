@@ -1,14 +1,22 @@
 source 'https://rubygems.org'
+source :rubygems
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.0'
 gem 'bcrypt', '~> 3.1.7'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.3'
+# gem 'rails', '~> 5.2.3'
+gem 'rails', '~> 6.0.3', '>= 6.0.3.4'
 # Use sqlite3 as the database for Active Record
-# gem 'sqlite3'
-gem 'pg'
+gem 'sqlite3'
+# gem 'pg'
+# add this gem to solve (ExecJS::RuntimeUnavailable) issue 
+# gem 'therubyracer'
+# gem 'execjs'
+# install libv8 gem
+gem 'libv8', '3.16.14.19'
+# gem 'libv8', '~> 3.16', '>= 3.16.14.7'
 gem 'rest-client', '~> 2.0.1'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
