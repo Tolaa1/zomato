@@ -8,7 +8,7 @@ set :application, 'zomato'
 #FIXME replace 'git@github.com:YOUR-GIT-REPO-HERE' with your git clone url
 set :repo_url, 'git@github.com:Tolaa1/zomato.git'
 #FIXME add location on the server here
-set :deploy_to, '/home/deploy/aws-rails'
+set :deploy_to, '/home/deploy/zomato'
 set :branch, ENV['BRANCH'] if ENV['BRANCH']
 
 set :linked_files, %w{config/database.yml config/master.key}
