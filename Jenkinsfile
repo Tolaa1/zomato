@@ -5,7 +5,7 @@ pipeline {
         stage('build') {
             steps {
                 echo 'ruby --version'
-                echo 'building the application...
+                echo 'building the application...'
             }
         }
         
