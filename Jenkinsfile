@@ -1,8 +1,12 @@
 // Jenkinsfile (Declarative Pipeline)
 pipeline {
-    agent { docker { image 'ruby' } }
+    
+    agent any
+    
     stages {
+        
         stage('build') {
+            
             steps {
                 echo 'ruby --version'
                 echo 'building the application...'
@@ -10,12 +14,14 @@ pipeline {
         }
         
         stage('test') {
+            
             steps {
                 echo 'testing the application....'
             }
         }
         
         stage('deploy') {
+            
             steps {
                 echo 'deploying the application...'
             }
